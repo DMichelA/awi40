@@ -15,7 +15,7 @@ class Visitas:
         if cookie.get("visitas"):
           visitas = int(cookie.get("visitas"))
           visitas += 1
-          web.setcookie("visitas", str(1),expires="", domain=None)
+          web.setcookie("visitas", str(visitas),expires="", domain=None)
         else:
           web.setcookie("visitas", str(1),expires="", domain=None)
           visitas = "1"

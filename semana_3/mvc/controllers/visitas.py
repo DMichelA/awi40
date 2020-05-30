@@ -1,10 +1,12 @@
 import web
+from datetime import date 
 
 class Visitas:
     def GET(self, nombre):
       try:
         cookie = web.cookies()
         visitas = "0"
+        fecha = date.today()
         print(cookie)
         if nombre:
           web.setcookie("nombre",nombre,expires="", domain=None)
@@ -20,6 +22,12 @@ class Visitas:
           web.setcookie("visitas", str(1),expires="", domain=None)
           visitas = "1"
         
-        return "Visitas " + str(visitas) + " Nombre " + nombre
+        if cookie.get("fecha"):
+          web.setcookie("fecha", fecha, expires="", domain=None)
+        else:
+          web.setcookie("fecha", fecha, expires="", domain=None)
+
+        return "Visitas " + str(visitas) + " Nombre " + nombre + "\nFecha visita: " + str(fecha)
       except Exception as e:
           return "Error " + str(e.args)
+
